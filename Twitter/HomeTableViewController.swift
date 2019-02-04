@@ -112,6 +112,21 @@ class HomeTableViewController: UITableViewController {
         return tweetArray.count
     }
 
+    
+    // MARK: -Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        //find tweet
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!
+        let tweet = tweetArray[indexPath.row]
+        
+        //pass tweet to details screen
+        let detailsViewController = segue.destination as! TweetDetailsViewController
+        detailsViewController.tweet = tweet
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
    
 
 }
